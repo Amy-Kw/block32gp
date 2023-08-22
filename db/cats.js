@@ -5,6 +5,7 @@ async function getAllCats() {
   try {
     // write some code :)
     const rows = data.cats;
+    console.log(rows);
     return rows;
   } catch (error) {
     throw error;
@@ -28,8 +29,8 @@ async function createCat(body) {
   try {
     // write some code :)
     const cat = body;
-    cat.id = Math.round(Math.random() * 100);
-    cat.push(body);
+    const cats = data.cats;
+    cats.push(body);
     return cat;
   } catch (error) {
     throw error;
@@ -41,7 +42,7 @@ async function updateCat(catId, body) {
   try {
     const cats = data.cats;
     const cat = cats.find((cat) => cat.id === Number(catId));
-    const index = cats.findIndex((cat) => cat.id === Number(catId));
+    const index = cats.findIndex((cat) => cat.id === Number(catId)); //(cat = keeps getting surrounded  like (cat) when I save, I know its (cat....
     let newCat = { ...cat, ...body };
     cat[index] = newCat;
     return newCat;
@@ -55,7 +56,7 @@ async function deleteCat(catId) {
   try {
     const cats = data.cats;
     const cat = cats.find((cat) => cat.id === Number(catId));
-    const index = cats.findIndex((cat) => cat.id === Number(catId));
+    const index = cats.findIndex((cat) => cat.id === Number(catId)); //(cat = keeps getting surrounded  like (cat) when I save, I know its (cat....
     cats.splice(index, 1);
     return cat;
   } catch (error) {
